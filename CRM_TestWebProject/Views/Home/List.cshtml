@@ -15,14 +15,12 @@
 </head>
 <body>
     <table border="1">
-        <col style="width:40%">
-        <col style="width:40%">
-        <col style="width:40%">
         <caption>Список сотрудников</caption>
         <tr>
             <th>Имя</th>
             <th>Фамилия</th>
             <th>Логин</th>
+            <th>Action</th>
         </tr>
         @{
             foreach (var i in Model)
@@ -31,11 +29,20 @@
                     <td>@i.FirstName</td>
                     <td>@i.LastName</td>
                     <td>@i.Login</td>
+                    <td>
+                        @Html.ActionLink("Отключить", "Delete", new { i = i.Login },
+                            new { onclick = "return confirm('Вы уверены, что хотите отключить пользователя?');" })
+                    </td>
                 </tr>
             }
         }
 
     </table>
+
+    <br>
+
+    @Html.ActionLink("Отключить всех", "DeleteAll", new { },
+                            new { onclick = "return confirm('Вы уверены, что хотите отключить всех пользователей?');" })
 </body>
 </html>
 

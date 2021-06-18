@@ -1,0 +1,35 @@
+﻿
+@model IEnumerable<CRMUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table style="border: 1px solid silver">
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Login</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.Login
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { i = item.Login })
+            </td>
+        </tr>
+        }
+    </tbody>
+
